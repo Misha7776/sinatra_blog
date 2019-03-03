@@ -1,19 +1,21 @@
 class ApplicationController < Sinatra::Base
   helpers ApplicationHelper
+  register Sinatra::Flash
 
-  # configure do
-  #   db = Mongo::Client.new([ '127.0.0.1:27017' ], :database => 'sinatra_blog')  
-  #   set :mongo_db, db[:sinatra_blog]
-  # end
+  configure do
+    Mongoid.load!('./database.yml', :development)
+    Mongoid.raise_not_found_error = false
+  end
 
   set :views, File.expand_path('../../views', __FILE__)
   set :root, File.dirname(__FILE__)
 
   enable :sessions
+  set :session_secret, 'sinatra_auth_secret'
 
   get '/' do
-    binding.pry
-   slim :'root/dashboard'
+    title current_user ? "#{current_user.full_name} dashboard" : 'Dashboard'
+    slim :'root/dashboard'
   end
 
   not_found do

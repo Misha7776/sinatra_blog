@@ -1,0 +1,30 @@
+div.row
+  div.col-md-12 style='text-align: center;'
+    h1 style='text-align: center;' Edit #{current_user.full_name} profile
+div.col-md-12 style='text-align: center;' 
+  form action='/users/#{current_user.id}/update' method='POST'
+    div.col-md-6.form-group 
+      label for="name"
+        | Full Name
+      input.form-control id='name' style='height: 30px;' name='full_name' value="#{current_user.full_name}" type='text' placeholder="Enter your full name"
+    div.col-md-6.form-group 
+      label for="email"
+        | Email
+      input.form-control id='email' style='height: 30px;' name='email' value="#{current_user.email}" type='text' placeholder="Enter email"
+    div.col-md-6.form-group 
+      label for="age"
+        | Age
+      input.form-control id='age' style='height: 30px;' name='age' value="#{current_user.age}" type='number' placeholder="Enter your age"
+    div.col-md-6.form-group 
+      label for="profession"
+        | Profession
+      input.form-control id='profession' style='height: 30px;' name='profession' value="#{current_user.profession}" type='text' placeholder="Enter your profession"  
+    div.col-md-6  
+      label Password
+      input.form-control style='height: 30px;' name='password' value='' type='password' placeholder="If password empty, it won't be updated"
+    div.col-md-6
+      button.btn.btn-success type='submit' value='1' Update
+div.col-md-12
+	h4 Are you tired of this app?
+	a.btn.btn-lg.btn-danger href="/users/#{current_user.id}/delete" 
+		| Delete my account 

@@ -1,0 +1,12 @@
+.container
+	h1 Your posts
+	- current_user.posts.each do |post|
+		div.container
+			div.col-md-4
+				h4 #{post.title}
+				span
+					a href="/posts/#{post.id}/edit" Edit 
+					| /
+					a href="/posts/#{post.id}/delete" Delete
+			div.col-md-4
+				p #{post.content}	
