@@ -2,26 +2,26 @@ class PostsController < ApplicationController
   helpers ApplicationHelper
 
   get '/' do
-  	if logged_in?
-	    title 'User Posts'
-	    slim :'posts/index'
-	  else
-	  	flash[:info] = 'Please, authenticate yourself first!'
-	  	redirect '/'
-	  end
+    if logged_in?
+      title 'User Posts'
+      slim :'posts/index'
+    else
+      flash[:info] = 'Please, authenticate yourself first!'
+      redirect '/'
+    end
   end
 
   get '/new' do
-  	if logged_in? 
-  		slim :'posts/new'
-  	else
-  		flash[:info] = 'Please, authenticate yourself first!'
-  		redirect '/'
-  	end
+    if logged_in?
+      slim :'posts/new'
+    else
+      flash[:info] = 'Please, authenticate yourself first!'
+      redirect '/'
+    end
   end
 
   post '/create' do
-    if logged_in? 
+    if logged_in?
       @post = current_user.posts.create(params)
       redirect '/posts'
     else
@@ -45,11 +45,10 @@ class PostsController < ApplicationController
     if logged_in?
       if current_post.update(params)
         flash[:success] = 'Post updated!'
-        redirect '/posts'
       else
         flash[:warning] = 'Update failed, please fill all required fields'
-        redirect '/posts'
       end
+      redirect '/posts'
     else
       flash[:info] = 'Please, authenticate yourself first!'
       redirect '/'

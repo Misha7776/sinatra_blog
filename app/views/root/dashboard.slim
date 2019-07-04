@@ -1,20 +1,20 @@
 - if logged_in?
-	div.container
-		h1 Your posts
-		- current_user.posts.each do |post|
-			div.container
-				div.col-md-4
-					h4 #{post.title}
-					span
-						a href="/posts/#{post.id}/edit" Edit 
-						| /
-						a href="/posts/#{post.id}/delete" Delete
-				div.col-md-4
-					p #{post.content}	
+  div.container
+    h1 Your posts
+    - current_user.posts.each do |post|
+      div.container style="background-color: #f1f1f1; padding: 5px; margin-bottom: 5px;"
+        div.col-md-4
+          h4 #{post.title}
+          span
+            a href="/posts/#{post.id}/edit" Edit
+            | /
+            a href="/posts/#{post.id}/delete" Delete
+        div.col-md-4
+          p #{post.content}
 - else
-	div.container style="text-align: center;"
-		.col-md-12
-			h1 Welcom to Sinatra Test Blog
-		.col-md-12
-			a.btn.btn-large.btn-primary href="/users/new"
-				| Sign Up
+  div.container style="text-align: center;"
+    .col-md-12
+      h1 Welcom to Sinatra Test Blog
+    .col-md-12
+      a.btn.btn-large.btn-primary href="/users/new"
+        | Sign Up

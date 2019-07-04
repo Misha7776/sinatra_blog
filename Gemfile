@@ -10,4 +10,3 @@ gem 'pry-remote'
 # views
 gem 'slim'
 gem 'sinatra-flash'
-

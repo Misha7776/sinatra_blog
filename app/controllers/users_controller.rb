@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  helpers ApplicationHelper 
+  helpers ApplicationHelper
 
   get '/new' do
     if logged_in?
@@ -38,11 +38,10 @@ class UsersController < ApplicationController
     if logged_in?
       if current_user.update(params)
         flash[:success] = 'Attributes updated!'
-        redirect "users/#{current_user.id}/edit"
       else
         flash[:warning] = 'Update failed, please fill all required fields'
-        redirect "users/#{current_user.id}/edit"
       end
+      redirect "users/#{current_user.id}/edit"
     else
       flash[:info] = 'Please, authenticate yourself first!'
       redirect '/'
@@ -54,10 +53,9 @@ class UsersController < ApplicationController
       current_user.delete
       session.clear
       flash[:info] = 'Account deleted!'
-      redirect '/'
     else
-      flash[:info] = 'Ooops! Something went wrong.'
-      redirect '/'
+      flash[:warning] = 'Ooops! Something went wrong.'
     end
+    redirect '/'
   end
 end

@@ -1,11 +1,10 @@
 class SessionsController < ApplicationController
-
-	get '/new' do
+  get '/new' do
     title 'Login'
     slim :'users/login'
   end
 
-  post '/login' do 
+  post '/login' do
     @user = User.find_by(email: params[:email])
 
     if !@user.nil? && @user.authenticate(params[:password])
@@ -14,13 +13,13 @@ class SessionsController < ApplicationController
       flash[:success] = "Welcome back, #{@user.full_name}"
       slim :'/posts/index'
     else
-    	flash[:danger] = 'Invalide credentials provided!'
+      flash[:danger] = 'Invalide credentials provided!'
       redirect '/sessions/new'
     end
   end
 
-  get '/logout' do 
-  	session.clear
-  	redirect '/'
+  get '/logout' do
+    session.clear
+    redirect '/'
   end
 end

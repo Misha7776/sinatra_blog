@@ -1,17 +1,17 @@
 css:
   * {box-sizing: border-box;}
-  
+
   body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
   }
-  
+
   .header {
     overflow: hidden;
     background-color: #f1f1f1;
     padding: 20px 10px;
   }
-  
+
   .header a {
     float: left;
     color: black;
@@ -22,7 +22,7 @@ css:
     line-height: 25px;
     border-radius: 4px;
   }
-  
+
   .header a.logo {
     font-size: 25px;
     font-weight: bold;
@@ -32,23 +32,23 @@ css:
     background-color: #ddd;
     color: black;
  }
-  
+
   .header a.active {
     background-color: dodgerblue;
     color: white;
   }
-  
+
   .header-right {
      float: right;
    }
-  
+
    @media screen and (max-width: 500px) {
     .header a {
        float: none;
        display: block;
        text-align: left;
      }
-    
+
     .header-right {
        float: none;
      }
@@ -61,7 +61,9 @@ css:
       a href='/posts/new' Create a post
       a href='/users/#{current_user.id}/edit' Settings
       a href='/sessions/logout' Log Out
+      p.pull-right style="margin-top: 15px;"
+        | Hello, #{ current_user.full_name }
     - else
-      a href='/sessions/new' Log In  
+      a href='/sessions/new' Log In
       a href="/users/new" Sign Up
 
